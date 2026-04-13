@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
@@ -22,7 +19,9 @@ return new class extends Migration
             $table->unsignedTinyInteger('completion_percentage')->default(0);
             $table->decimal('expected_hours', 6, 2)->nullable();
             $table->decimal('logged_hours', 6, 2)->default(0);
+            $table->enum('status', ['open', 'in_progress', 'completed', 'on_hold', 'cancelled'])->default('open');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

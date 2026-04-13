@@ -20,11 +20,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('avatar')->nullable();
             $table->decimal('hourly_rate', 8, 2)->default(0);
-            $table->date('member_since')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('phone_verified_at')->nullable();
-            $table->enum('role', ['admin', 'user'])->default('user');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->enum('role', ['admin', 'freelancer'])->default('freelancer');
+            $table->enum('status', ['active', 'inactive', 'suspended'])->default('active');
             $table->timestamp('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();

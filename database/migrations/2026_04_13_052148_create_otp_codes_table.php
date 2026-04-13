@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('otp_codes', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->string('identifier'); //  "email or phone"
+            $table->string('identifier');
             $table->string('code', 4);
-            $table->enum('type', ['login_with_phone', 'login_with_email', 'forget_password', 'email_verification', 'phone_verification']);
+            $table->enum('type', ['login_with_phone', 'login_with_email', 'forget_password_with_phone', 'forget_password_with_email', 'verify_email', 'verify_phone']);
             $table->timestamp('expires_at')->index();
             $table->boolean('is_used')->default(false);
             $table->timestamp('used_at')->nullable();
